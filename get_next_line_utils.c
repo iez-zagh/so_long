@@ -6,13 +6,13 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:23:09 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/14 13:40:41 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:21:56 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -36,15 +36,13 @@ int	ft_strchr(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c)
-		{
 			return (i);
-		}
 		i++;
 	}
 	return (-1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, char *s2)
 {
 	char	*res;
 	int		i;
@@ -69,7 +67,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (res);
 }
 
-char	*ft_substr(char *s, int start, int len)
+char	*ft_substr(const char *s, int start, int len)
 {
 	int			i;
 	int			len_s;
