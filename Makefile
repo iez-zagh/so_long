@@ -1,13 +1,21 @@
 NAME = so_long
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+BONUS = so_long_bonus
+CFLAGS = -Wall -Wextra -Werror -g
+LDFLAGS = -fsanitize=address #here
 CC = cc
+MANDATORY_DIR = mandatory
+BONUS_DIR = bonus
 
-M_SOURCES = so_long.c get_next_line_utils.c get_next_line.c ft_split.c check_map.c check_map2.c \
-			built_map.c moves.c helper_function.c built_map2.c
+M_SOURCES = $(wildcard $(MANDATORY_DIR)/*.c)
+B_SOURCES = $(wildcard $(BONUS_DIR)/*_bonus.c)
 
 M_OBJECTS = ${M_SOURCES:.c=.o}
+B_OBJECTS = ${B_SOURCES:.c=.o}
 
-%.o : %.c so_long.h
+%.o : %.c $(MANDATORY_DIR)/so_long.h
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+%.o : %.c $(BONUS_DIR)/so_long_bonus.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
@@ -15,9 +23,17 @@ all : $(NAME)
 $(NAME) : $(M_OBJECTS)
 	@$(CC) $(M_OBJECTS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
+bonus : $(BONUS)
+
+$(BONUS) : $(B_OBJECTS)
+	@$(CC) $(B_OBJECTS) -lmlx -framework OpenGL -framework AppKit -o $(BONUS)
+
 clean :
 	@rm -rf $(M_OBJECTS)
+	@rm -rf $(B_OBJECTS)
 fclean : clean
 	@rm -rf $(NAME)
+	@rm -rf $(BONUS)
+
 re : fclean all
 .PHONY : clean
