@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 02:04:45 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 01:55:39 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:48:29 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	count_coins(char **s)
 void	can_reach_all(t_data *st, int x, int y)
 {
 	if (y < 0 || x < 0 || y >= st->wi || x >= st->hi
-		|| st->s2[x][y] == 'X' || st->s2[x][y] == 'E' || st->s2[x][y] == '1')
+		|| st->s2[x][y] == 'X' || st->s2[x][y] == 'E' || st->s2[x][y] == '1'
+			|| st->s2[x][y] == 'N')
 		return ;
 	st->s2[x][y] = 'X';
 	can_reach_all(st, x -1, y);

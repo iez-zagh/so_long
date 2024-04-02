@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:21:04 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:52:33 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:35:50 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	destroy_images(t_data *st)
 	mlx_destroy_window(st->mlx, st->mlx_win);
 }
 
-void	ft_putnbr(unsigned long long n)
+void	ft_putnbr(size_t n)
 {
 	if (n < 10)
 	{
@@ -57,8 +57,8 @@ void	ft_putnbr(unsigned long long n)
 	}
 	else
 	{
-		ft_putnbr((n / 10));
-		ft_putnbr((n % 10));
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 }
 
@@ -69,4 +69,30 @@ void	inst(void)
 	write(1, "[", 1);
 	ft_putnbr(++i);
 	write(1, "]\n", 2);
+}
+
+void	check_ext(char *s)
+{
+	int	i;
+	int	flag;
+
+	i = ft_strlen(s);
+	flag = 0;
+	i--;
+	if (s[i] != 'r')
+		flag++;
+	i--;
+	if (s[i] != 'e')
+		flag++;
+	i--;
+	if (s[i] != 'b')
+		flag++;
+	i--;
+	if (s[i] != '.')
+		flag++;
+	if (flag)
+	{
+		write (2, "wrong extention\n", 16);
+		exit (1);
+	}
 }

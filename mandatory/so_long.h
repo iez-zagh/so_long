@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:45:27 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:47:42 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:31:53 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 # define SO_LONG_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 20
 # endif
 
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdio.h>
 # include <mlx.h>
 
 typedef struct s_data
@@ -93,7 +92,8 @@ void	checking_2(t_data *st);
 void	error(t_data *st, int y);
 void	create_images(t_data *st);
 void	destroy_images(t_data *st);
-void	ft_putnbr(unsigned long long n);
+void	ft_putnbr(size_t n);
 void	inst(void);
+void	check_ext(char *s);
 
 #endif

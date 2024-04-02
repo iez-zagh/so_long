@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 00:59:27 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/30 15:36:00 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:12:25 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	put_to_image(t_data *st, void *image, int i, int j)
 {
-	mlx_put_image_to_window(st->mlx, st->mlx_win, image, j * 64, i * 64);
+	if ((mlx_put_image_to_window(st->mlx,
+				st->mlx_win, image, j * 64, i * 64) == 1))
+		error(st, 5);
 }
 
 int	key_hook(int keycode, t_data *st)
@@ -22,7 +24,6 @@ int	key_hook(int keycode, t_data *st)
 	int	i;
 
 	i = 0;
-	st->flag2 = false;
 	if (keycode == 53)
 		exit_(st);
 	else if (keycode == 0 || keycode == 123)
@@ -55,18 +56,18 @@ int	exit_(t_data *st)
 
 void	go_left(t_data *st)
 {
-	static int	i = 5;
+	static int	i = 1;
 
 	if (check_c_e(st, st->player_x, st->player_y - 1))
 		return ;
 	st->n = i + 48;
 	i++;
 	if (i == 8)
-		i = 2;
+		i = 1;
 	st->d2[11] = st->n;
 	st->player1 = mlx_xpm_file_to_image(st->mlx, st->d2, &(st->k), &(st->k));
 	if (!st->player1)
-		error(st, 6);
+		error(st, 5);
 	put_to_image(st, st->floor, st->player_x, st->player_y);
 	st->s[st->player_x][st->player_y] = '0';
 	st->player_y--;

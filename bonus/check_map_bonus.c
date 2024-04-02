@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:07:22 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/27 22:21:56 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:38:22 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	checking(t_data *st)
 {
 	int	i;
 
+	close(st->fd);
 	i = 0;
 	if (!st->res || st->res[ft_strlen(st->res) - 1] == '\n')
 		error(st, 2);

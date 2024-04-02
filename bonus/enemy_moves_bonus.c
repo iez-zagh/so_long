@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:55:53 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 03:03:21 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 03:22:48 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	go_right_e(t_data *st, int *i, int *j)
 {
 	if (st->s[*i][*j + 1] == '1' || st->s[*i][*j + 1] == 'C'
-		|| st->s[*i][*j + 1] == 'E')
+		|| st->s[*i][*j + 1] == 'E' || st->s[*i][*j + 1] == 'N')
 	{
 		st->flag_move = false;
 		return ;
@@ -33,7 +33,7 @@ void	go_right_e(t_data *st, int *i, int *j)
 void	go_left_e(t_data *st, int *i, int *j)
 {
 	if (st->s[*i][*j - 1] == '1' || st->s[*i][*j - 1] == 'C'
-		|| st->s[*i][*j - 1] == 'E')
+		|| st->s[*i][*j - 1] == 'E' || st->s[*i][*j - 1] == 'N')
 	{
 		st->flag_move = true;
 		return ;

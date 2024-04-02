@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 00:52:45 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 03:04:34 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 18:11:34 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ void	go_up(t_data *st)
 
 void	go_right(t_data *st)
 {
-	static int	i = 2;
+	static int	i = 1;
 
 	if (check_c_e(st, st->player_x, st->player_y + 1))
 		return ;
 	st->n = i + 48;
 	i++;
 	if (i == 8)
-		i = 2;
+		i = 1;
 	st->d[9] = st->n;
 	st->player1 = mlx_xpm_file_to_image(st->mlx, st->d, &(st->k), &(st->k));
 	if (!st->player1)
-		error(st, 6);
+		error(st, 5);
 	st->s[st->player_x][st->player_y] = '0';
 	put_to_image(st, st->floor, st->player_x, st->player_y);
 	st->player_y++;
@@ -110,4 +110,5 @@ void	get_frames(t_data *st)
 	st->d_ = d_;
 	st->d2_ = d2_;
 	st->flag = true;
+	st->flag_move = true;
 }

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 00:59:27 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:50:42 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:10:49 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	put_to_image(t_data *st, void *image, int i, int j)
 {
-	mlx_put_image_to_window(st->mlx, st->mlx_win, image, j * 64, i * 64);
+	if ((mlx_put_image_to_window(st->mlx,
+				st->mlx_win, image, j * 64, i * 64) == 1))
+		error(st, 5);
 }
 
 int	key_hook(int keycode, t_data *st)
@@ -62,6 +64,8 @@ void	go_left(t_data *st)
 		return ;
 	inst();
 	st->player1 = mlx_xpm_file_to_image(st->mlx, "./tex/idle_l0.xpm", &k, &k);
+	if (!st->player1)
+		error(st, 5);
 	put_to_image(st, st->floor, st->player_x, st->player_y);
 	st->player_y--;
 	put_to_image(st, st->floor, st->player_x, st->player_y);

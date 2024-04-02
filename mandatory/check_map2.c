@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:40:17 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:53:30 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:15:47 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ void	create_window(t_data *st)
 	can_reach_all(st, st->player_x, st->player_y);
 	checking_2(st);
 	st->mlx = mlx_init();
+	if (!st->mlx)
+		error (st, 9);
 	st->mlx_win = mlx_new_window(st->mlx, 64 * st->wi, 64 * st->hi, "so_long");
+	if (!st->mlx_win)
+		error (st, 9);
 	create_images(st);
 	built_window(st, (const char **)st->s);
 }
@@ -104,6 +108,7 @@ void	built_window(t_data *st, const char **s)
 		}
 		i++;
 	}
+	write(1, "[0]\n", 4);
 	take_updates(st);
 	mlx_loop(st->mlx);
 }

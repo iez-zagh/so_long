@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 00:52:45 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:54:35 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:41:36 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	go_down(t_data *st)
 {
 	if (st->s[st->player_x + 1][st->player_y] == 'C')
 	{
-		st->s[st->player_x + 1][st->player_y] = '0';
 		st->coins--;
+		st->s[st->player_x + 1][st->player_y] = '0';
 	}
 	if ((st->s[st->player_x + 1][(st->player_y)] == 'E' && st->coins)
 		|| st->s[st->player_x + 1][(st->player_y)] == '1')
@@ -39,8 +39,8 @@ void	go_up(t_data *st)
 {
 	if (st->s[st->player_x - 1][st->player_y] == 'C')
 	{
-		st->s[st->player_x - 1][st->player_y] = '0';
 		st->coins--;
+		st->s[st->player_x - 1][st->player_y] = '0';
 	}
 	if ((st->s[st->player_x - 1][(st->player_y)] == 'E' && st->coins)
 		|| st->s[st->player_x - 1][(st->player_y)] == '1')
@@ -64,7 +64,10 @@ void	go_right(t_data *st)
 
 	k = 1;
 	if (st->s[st->player_x][st->player_y + 1] == 'C')
+	{
 		st->coins--;
+		st->s[st->player_x][st->player_y + 1] = '0';
+	}
 	if ((st->s[st->player_x][(st->player_y + 1)] == 'E' && st->coins)
 		|| st->s[st->player_x][(st->player_y + 1)] == '1')
 		return ;

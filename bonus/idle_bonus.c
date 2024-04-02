@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 02:33:57 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/30 15:06:48 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:42:43 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	check_c_e(t_data *st, int i, int j)
 	}
 	if (st->s[i][j] == 'C')
 	{
-		st->s[i][j] = '0';
 		st->coins--;
+		st->s[i][j] = '0';
 	}
 	if ((st->s[i][(j)] == 'E' && st->coins)
 		|| st->s[i][(j)] == '1')
@@ -112,7 +112,7 @@ void	idle2(t_data *st)
 
 	if (!st->flag2)
 	{
-		if (g == 1700)
+		if (g == 1400)
 		{
 			st->flag2 = true;
 			g = 0;

@@ -6,7 +6,7 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:45:00 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 03:05:22 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:38:16 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 		exit(0);
 	if (ac > 2)
 		exit(1);
+	check_ext2(av[1]);
 	st->fd = open(av[1], O_RDONLY);
 	if (st->fd == -1)
 		error(st, 1);
@@ -37,7 +38,6 @@ int	main(int ac, char **av)
 		st->res = ft_strjoin(st->res, st->line);
 		free(st->line);
 	}
-	close(st->fd);
 	checking(st);
 }
 
@@ -54,8 +54,6 @@ void	error(t_data *st, int y)
 		write(1, "there is an issue in creating textures !!\n", 42);
 		destroy_images(st);
 	}
-	else if (y == 6)
-		write(1, "empty file !!\n", 15);
 	else if (y == 7)
 		write(1, "the map it's too big for this screen", 37);
 	else
@@ -96,8 +94,10 @@ void	inst(t_data *st)
 
 	n = ft_itoa(++i, st);
 	put_to_image(st, st->wall, 0, 0);
-	mlx_put_image_to_window(st->mlx, st->mlx_win, st->cadre, 0, 0);
-	mlx_string_put(st->mlx, st->mlx_win, 64, 24, 0x0A1FD1, n);
+	if ((mlx_put_image_to_window(st->mlx, st->mlx_win, st->cadre, 0, 0) == -1))
+		error(st, 5);
+	if ((mlx_string_put(st->mlx, st->mlx_win, 64, 24, 0x0A1FD1, n) == -1))
+		error(st, 5);
 	free(n);
 }
 

@@ -6,16 +6,11 @@
 /*   By: iez-zagh <iez-zagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:45:00 by iez-zagh          #+#    #+#             */
-/*   Updated: 2024/03/31 02:54:59 by iez-zagh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:34:52 by iez-zagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	f(void)
-{
-	system("leaks so_long");
-}
 
 int	main(int ac, char **av)
 {
@@ -29,6 +24,7 @@ int	main(int ac, char **av)
 		exit(0);
 	if (ac > 2)
 		exit(1);
+	check_ext(av[1]);
 	st->fd = open(av[1], O_RDONLY);
 	if (st->fd == -1)
 		error(st, 1);
@@ -42,7 +38,6 @@ int	main(int ac, char **av)
 		st->res = ft_strjoin(st->res, st->line);
 		free (st->line);
 	}
-	close (st->fd);
 	checking(st);
 }
 
@@ -59,8 +54,6 @@ void	error(t_data *st, int y)
 		write (1, "there is an issue in creating textures !!\n", 42);
 		destroy_images(st);
 	}
-	else if (y == 6)
-		write (2, "empty file !!\n", 15);
 	else if (y == 7)
 		write (2, "the map it's too big for this screen", 37);
 	exit (1);
